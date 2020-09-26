@@ -102,7 +102,11 @@ function js() {
         .pipe(dest(path.build.js))
         .pipe(
             babel({
-                presets: ['@babel/preset-env']
+                presets: ['@babel/preset-env'],
+                //* Использование текущего синтаксиса без изменений под старые версии. Не желательно его использовать 'https://babeljs.io/docs/en/babel-plugin-syntax-class-properties'
+                // plugins: ['@babel/plugin-syntax-class-properties'],
+                //* Использование измененного синтаксиса под старые версии (касаетс class/constructor) 'https://babeljs.io/docs/en/babel-plugin-proposal-class-properties'
+                plugins: ['@babel/plugin-proposal-class-properties']
             })
         )
         .pipe(
